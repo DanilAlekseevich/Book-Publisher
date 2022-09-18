@@ -21,46 +21,15 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
-    public function add(Book $entity, bool $flush = false): void
+    /**
+     * @param int $id
+     * @return Book[]
+     */
+    public function findBookByCategoryId(int $id): array
     {
-        $this->getEntityManager()->persist($entity);
+        $query = $this->_em->createQuery('SELECT b FROM App\Entity\Book AS b WHERE :categoryId MEMBER of b.categories');
+        $query->setParameter("categoryId", $id);
 
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        return $query->getResult();
     }
-
-    public function remove(Book $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
-
-//    /**
-//     * @return Book[] Returns an array of Book objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('b.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Book
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }
