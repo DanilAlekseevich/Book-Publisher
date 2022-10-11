@@ -8,8 +8,7 @@ class BookCategoryListItem
         private readonly int    $id,
         private readonly string $title,
         private readonly string $slug
-    )
-    {
+    ) {
     }
 
     public function getId(): int

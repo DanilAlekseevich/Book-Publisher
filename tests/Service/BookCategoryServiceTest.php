@@ -8,12 +8,9 @@ use App\Model\BookCategoryListResponse;
 use App\Repository\BookCategoryRepository;
 use App\Service\BookCategoryService;
 use App\Tests\AbstractTestCase;
-use Doctrine\Common\Collections\Criteria;
-use PHPUnit\Framework\TestCase;
 
 class BookCategoryServiceTest extends AbstractTestCase
 {
-
     public function testGetCategories(): void
     {
         $category = (new BookCategory())->setTitle('Test')->setSlug('test');
@@ -21,8 +18,7 @@ class BookCategoryServiceTest extends AbstractTestCase
 
         $repository = $this->createMock(BookCategoryRepository::class);
         $repository->expects($this->once())
-            ->method('findBy')
-            ->with([], ['title' => Criteria::ASC])
+            ->method('findAllSortedByTitle')
             ->willReturn([$category]);
 
         $service = new BookCategoryService($repository);

@@ -16,8 +16,7 @@ class BookController extends AbstractController
 {
     public function __construct(
         private readonly BookService $bookService
-    )
-    {
+    ) {
     }
 
     /**

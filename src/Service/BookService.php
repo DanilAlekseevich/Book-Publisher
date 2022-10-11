@@ -14,8 +14,7 @@ class BookService
     public function __construct(
         private readonly BookRepository         $bookRepository,
         private readonly BookCategoryRepository $bookCategoryRepository
-    )
-    {
+    ) {
     }
 
     public function getBookByCategory(int $categoryId): BookListResponse
@@ -42,5 +41,4 @@ class BookService
             ->setMeap($book->isMeap())
             ->setPublicationDate($book->getPublicationDate()->getTimestamp());
     }
-
 }
