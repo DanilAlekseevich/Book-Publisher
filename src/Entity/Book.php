@@ -15,13 +15,13 @@ class Book
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string',length: 255)]
+    #[ORM\Column(type: 'string', length: 255)]
     private string $title;
 
-    #[ORM\Column(type: 'string',length: 255)]
+    #[ORM\Column(type: 'string', length: 255)]
     private string $slug;
 
-    #[ORM\Column(type: 'string',length: 255)]
+    #[ORM\Column(type: 'string', length: 255)]
     private string $image;
 
     #[ORM\Column(type: 'simple_array')]
@@ -42,13 +42,6 @@ class Book
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getId(): ?int
@@ -100,6 +93,7 @@ class Book
     public function setAuthors(array $authors): self
     {
         $this->authors = $authors;
+
         return $this;
     }
 
@@ -111,6 +105,7 @@ class Book
     public function setPublicationDate(\DateTimeInterface $publicationDate): self
     {
         $this->publicationDate = $publicationDate;
+
         return $this;
     }
 
@@ -122,6 +117,7 @@ class Book
     public function setMeap(bool $meap): self
     {
         $this->meap = $meap;
+
         return $this;
     }
 
@@ -135,11 +131,13 @@ class Book
 
     /**
      * @param Collection<BookCategory> $categories
+     *
      * @return $this
      */
     public function setCategories(Collection $categories): self
     {
         $this->categories = $categories;
+
         return $this;
     }
 }
