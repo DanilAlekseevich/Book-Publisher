@@ -11,6 +11,16 @@ services:
     ports:
       - '5432:5432'
 
+  database_test:
+    container_name: postgres_test
+    image: postgres:13.3-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - '5423:5432'
+
   php:
     build:
       context: ./docker/php
