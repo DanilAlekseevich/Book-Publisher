@@ -23,10 +23,10 @@ class ApiExceptionListener
     ) {
     }
 
-    public function __invoke(ExceptionEvent $event): JsonResponse
+    public function __invoke(ExceptionEvent $event): void
     {
         $throwable = $event->getThrowable();
-        $mapping = $this->resolver->resolve((string) $throwable);
+        $mapping = $this->resolver->resolve(get_class($throwable));
         if (!$mapping) {
             $mapping = ExceptionMapping::fromCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -44,6 +44,6 @@ class ApiExceptionListener
 
         $data = $this->serializer->serialize(new ErrorResponse($message), JsonEncoder::FORMAT);
 
-        return new JsonResponse($data, $mapping->getCode(), [], true);
+        $event->setResponse(new JsonResponse($data, $mapping->getCode(), [], true));
     }
 }
