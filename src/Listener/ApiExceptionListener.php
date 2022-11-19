@@ -26,7 +26,7 @@ class ApiExceptionListener
     public function __invoke(ExceptionEvent $event): JsonResponse
     {
         $throwable = $event->getThrowable();
-        $mapping = $this->resolver->resolve((string)$throwable);
+        $mapping = $this->resolver->resolve((string) $throwable);
         if (!$mapping) {
             $mapping = ExceptionMapping::fromCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -34,7 +34,7 @@ class ApiExceptionListener
         if ($mapping->getCode() >= Response::HTTP_INTERNAL_SERVER_ERROR || $mapping->isLoggable()) {
             $this->logger->error($throwable->getMessage(), [
                 'trace' => $throwable->getTraceAsString(),
-                'previous' => $throwable->getPrevious()->getMessage() ?? ''
+                'previous' => null !== $throwable->getPrevious() ? $throwable->getPrevious()->getMessage() : '',
             ]);
         }
 

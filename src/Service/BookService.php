@@ -12,7 +12,7 @@ use App\Repository\BookRepository;
 class BookService
 {
     public function __construct(
-        private readonly BookRepository         $bookRepository,
+        private readonly BookRepository $bookRepository,
         private readonly BookCategoryRepository $bookCategoryRepository
     ) {
     }

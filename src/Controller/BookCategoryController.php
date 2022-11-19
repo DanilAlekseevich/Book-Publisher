@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\BookCategoryListResponse;
+use App\Model\ErrorResponse;
 use App\Service\BookCategoryService;
 use Nelmio\ApiDocBundle\Model\Model;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +23,11 @@ class BookCategoryController extends AbstractController
         response: 200,
         description: 'Return book categories',
         content: new Model(type: BookCategoryListResponse::class)
+    )]
+    #[OA\Response(
+        response: 404,
+        description: 'Book category not found',
+        content: new Model(type: ErrorResponse::class)
     )]
     public function getCategories(): JsonResponse
     {

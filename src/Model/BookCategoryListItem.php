@@ -5,7 +5,7 @@ namespace App\Model;
 class BookCategoryListItem
 {
     public function __construct(
-        private readonly int    $id,
+        private readonly int $id,
         private readonly string $title,
         private readonly string $slug
     ) {

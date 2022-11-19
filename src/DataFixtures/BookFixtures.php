@@ -10,7 +10,6 @@ use Doctrine\Persistence\ObjectManager;
 
 class BookFixtures extends Fixture implements DependentFixtureInterface
 {
-
     public function load(ObjectManager $manager)
     {
         $androidCategory = $this->getReference(BookCategoryFixtures::ANDROID_CATEGORY);
@@ -32,8 +31,7 @@ class BookFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            BookCategoryFixtures::class
+            BookCategoryFixtures::class,
         ];
-
     }
 }

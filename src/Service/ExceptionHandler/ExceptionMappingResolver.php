@@ -9,7 +9,7 @@ use InvalidArgumentException;
 class ExceptionMappingResolver
 {
     /**
-     * @param  ExceptionMapping[]  $mappings
+     * @param ExceptionMapping[] $mappings
      */
     public function __construct(private array $mappings)
     {
@@ -43,6 +43,6 @@ class ExceptionMappingResolver
             }
         }
 
-        return  $foundMapping;
+        return $foundMapping;
     }
 }
