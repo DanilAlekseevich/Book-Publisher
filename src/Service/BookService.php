@@ -19,7 +19,7 @@ class BookService
 
     public function getBookByCategory(int $categoryId): BookListResponse
     {
-        if ($this->bookCategoryRepository->existsById($categoryId)) {
+        if (!$this->bookCategoryRepository->existsById($categoryId)) {
             throw new BookCategoryNotFoundException();
         }
 

@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Model\BookCategoryListResponse;
-use App\Model\ErrorResponse;
 use App\Service\BookCategoryService;
-use Nelmio\ApiDocBundle\Model\Model;
+use Nelmio\ApiDocBundle\Annotation\Model;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,12 +21,7 @@ class BookCategoryController extends AbstractController
     #[OA\Response(
         response: 200,
         description: 'Return book categories',
-        content: new Model(type: BookCategoryListResponse::class)
-    )]
-    #[OA\Response(
-        response: 404,
-        description: 'Book category not found',
-        content: new Model(type: ErrorResponse::class)
+        content: new OA\JsonContent(ref: new Model(type: BookCategoryListResponse::class))
     )]
     public function getCategories(): JsonResponse
     {
