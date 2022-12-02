@@ -61,4 +61,6 @@ class ExceptionMappingResolverTest extends AbstractTestCase
 
         $this->assertTrue($mapping->isLoggable());
     }
+
+
 }
