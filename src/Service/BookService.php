@@ -3,7 +3,8 @@
 namespace App\Service;
 
 use App\Entity\Book;
-use App\Exception\BookCategoryNotFoundException;
+use App\Exception\RequestBodyConvertException;
+use App\Exception\SubscriberAlreadyExistsException;
 use App\Model\BookListItem;
 use App\Model\BookListResponse;
 use App\Repository\BookCategoryRepository;
@@ -20,7 +21,7 @@ class BookService
     public function getBookByCategory(int $categoryId): BookListResponse
     {
         if (!$this->bookCategoryRepository->existsById($categoryId)) {
-            throw new BookCategoryNotFoundException();
+            throw new SubscriberAlreadyExistsException();
         }
 
         return new BookListResponse(array_map(
